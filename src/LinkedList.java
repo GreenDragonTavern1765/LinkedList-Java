@@ -20,4 +20,51 @@ public class LinkedList<E> {
             this.item = item;
         }
     }
+
+    // Method will insert a new node at the front of the list
+    // Modifies the head of the linked list
+    public void pushNode(E data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Method appends a new node to the end of the linked list.
+    // Uses node.next to traverse the list
+    public void appendNode(E data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = new Node(data);
+            return;
+        } newNode.next = null;
+        Node last = head;
+        while (last.next != null)
+            last = last.next;
+        last.next = newNode;
+        return;
+    }
+
+    // Function will print the contents of the list, starting from
+    // the head of the list, using temp = temp.next instead of i++
+    public void printListContents() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        } Node temp = head;
+        while (temp != null) {
+            System.out.println(temp.item + " ");
+            temp = temp.next;
+        }
+    }
+
+    // Main method, create myList, an instance of LinkedList class
+    public static void main(String[] args) {
+        LinkedList<Integer> myList = new LinkedList<>();
+        myList.printListContents();
+        myList.pushNode(10);
+        myList.pushNode(11);
+        myList.appendNode(12);
+        myList.appendNode(13);
+        myList.printListContents();
+    }
 }
