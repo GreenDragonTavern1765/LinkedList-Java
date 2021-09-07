@@ -57,6 +57,17 @@ public class LinkedList<E> {
         }
     }
 
+    // Method iterates through present nodes until index is found, returning
+    // the node itself, private, must be accessed indirectly through another method
+    private Node<E> getNode(int index) {
+        Node<E> temp = head;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(Integer.toString(index));
+        for (int i = 0; i < index; i++)
+            temp = temp.next;
+        return temp;
+    }
+
     // Main method, create myList, an instance of LinkedList class
     public static void main(String[] args) {
         LinkedList<Integer> myList = new LinkedList<>();
