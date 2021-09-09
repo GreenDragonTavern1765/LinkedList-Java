@@ -6,9 +6,9 @@ public class LinkedList<E> {
     // Linked List constructor, sets head and tail to null
     // Sets the size to 0 initially
     public LinkedList() {
-        head = null;
-        tail = null;
-        size = 0;
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
     // Node class, will be called when creating a new node
@@ -27,6 +27,7 @@ public class LinkedList<E> {
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
+        this.size++;
     }
 
     // Method appends a new node to the end of the linked list.
@@ -41,6 +42,7 @@ public class LinkedList<E> {
         while (last.next != null)
             last = last.next;
         last.next = newNode;
+        this.size++;
         return;
     }
 
@@ -52,9 +54,9 @@ public class LinkedList<E> {
             return;
         } Node temp = head;
         while (temp != null) {
-            System.out.println(temp.item + " ");
+            System.out.print(temp.item + " ");
             temp = temp.next;
-        }
+        } System.out.println();
     }
 
     // Method iterates through present nodes until index is found, returning
@@ -68,14 +70,20 @@ public class LinkedList<E> {
         return temp;
     }
 
+    // Method to remove a node at a given index
+    // as well as decrement the size by 1
+    // Uses the getNode() method to traverse the list
+    // until given node index is found
+    public void remove(int index) {
+        Node<E> node = getNode(index);
+        Node<E> temp = node.next;
+        if (temp.next != null) {
+            node.next = temp.next;
+            this.size--;
+        }
+    }
+
     // Main method, create myList, an instance of LinkedList class
     public static void main(String[] args) {
-        LinkedList<Integer> myList = new LinkedList<>();
-        myList.printListContents();
-        myList.pushNode(10);
-        myList.pushNode(11);
-        myList.appendNode(12);
-        myList.appendNode(13);
-        myList.printListContents();
     }
 }
